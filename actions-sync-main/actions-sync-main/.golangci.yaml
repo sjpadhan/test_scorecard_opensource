@@ -1,0 +1,29 @@
+linters:
+    disable-all: true
+    enable:
+    - gocyclo
+    - revive
+    - gofmt
+    - goimports
+    - unused
+    - errcheck
+    - ineffassign
+    - unconvert
+    - goconst
+    - megacheck
+    - goimports
+    - govet
+    - unparam
+run:
+    tests: true
+    skip-files:
+        - ".*_test\\.go$"
+    modules-download-mode: vendor
+issues:
+  exclude-rules:
+    - path: test/github.go
+      text: "var-declaration: should omit type string from declaration of var authenticatedLogin; it will be inferred from the right-hand side"
+    - path: test/github.go
+      text: "var-declaration: should drop = \"\" from declaration of var errString; it is the zero value"
+    - path: src/push.go
+      text: "error-strings: error strings should not be capitalized or end with punctuation or a newline"
